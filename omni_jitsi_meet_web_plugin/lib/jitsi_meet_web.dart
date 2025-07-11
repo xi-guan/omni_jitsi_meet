@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:html' as html;
-import 'dart:ui' as ui;
+import 'dart:ui_web' as ui_web;
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-import 'package:omni_jitsi_meet_platform_interface/jitsi_meet_platform_interface.dart';
 import 'package:js/js.dart';
+import 'package:omni_jitsi_meet_platform_interface/jitsi_meet_platform_interface.dart';
 
 import 'jitsi_meet_external_api.dart' as jitsi;
 import 'room_name_constraint.dart';
@@ -224,7 +224,9 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
   removeListener(JitsiMeetingListener listner) {
     debug_print("removing listeners");
     Set<String> listeners = {};
-    if (listner.onConferenceJoined != null) listeners.add(_videoConferenceJoined);
+    if (listner.onConferenceJoined != null) {
+      listeners.add(_videoConferenceJoined);
+    }
     if (listner.onConferenceTerminated != null) listeners.add(_videoConferenceLeft);
     listeners.addAll(listner.genericListeners?.map((l) => l.eventName) ?? []);
     api?.removeEventListener(listeners.toList());
@@ -240,7 +242,7 @@ class JitsiMeetPlugin extends JitsiMeetPlatform {
   Widget buildView(List<String> extraJS) {
     // ignore: undefined_prefixed_name
 
-    ui.platformViewRegistry.registerViewFactory(_view_id, (int viewId) {
+    ui_web.platformViewRegistry.registerViewFactory(_view_id, (int viewId) {
       final div = html.DivElement()
         ..id = _section_id
         ..style.width = '100%'
@@ -304,7 +306,7 @@ class JitsiMeetAPI extends JitsiMeetExternalAPI {
   }
 }
 // export it
-const jitsi = { JitsiMeetAPI };
+window.jitsi = { JitsiMeetAPI };
 """;
 }
 

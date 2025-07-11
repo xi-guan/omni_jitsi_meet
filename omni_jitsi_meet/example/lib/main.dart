@@ -19,13 +19,12 @@ class Meeting extends StatefulWidget {
 }
 
 class _MeetingState extends State<Meeting> {
-  final serverText = TextEditingController();
+  final serverText = TextEditingController(text: "https://localhost:8443"); //leave empty for meet.jitsi.si
   final roomText = TextEditingController(text: "omni_room_sample_1234");
   final subjectText = TextEditingController(text: "Subject1");
   final nameText = TextEditingController(text: "User1");
   final emailText = TextEditingController(text: "fake1@email.com");
-  final iosAppBarRGBAColor =
-      TextEditingController(text: "#0080FF80"); //transparent blue
+  final iosAppBarRGBAColor = TextEditingController(text: "#0080FF80"); //transparent blue
   bool? isAudioOnly = true;
   bool? isAudioMuted = true;
   bool? isVideoMuted = true;
@@ -62,7 +61,7 @@ class _MeetingState extends State<Meeting> {
                                 child: JitsiMeetConferencing(
                                   extraJS: [
                                     // extraJs setup example
-                                    '<script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>'
+                                    // '<script src="https://code.jquery.com/jquery-3.6.3.slim.js" integrity="sha256-DKU1CmJ8kBuEwumaLuh9Tl/6ZB6jzGOBV/5YpNE2BWc=" crossorigin="anonymous"></script>'
                                   ],
                                 ),
                               )),
@@ -85,9 +84,7 @@ class _MeetingState extends State<Meeting> {
           TextField(
             controller: serverText,
             decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Server URL",
-                hintText: "Hint: Leave empty for meet.jitsi.si"),
+                border: OutlineInputBorder(), labelText: "Server URL", hintText: "Hint: Leave empty for meet.jitsi.si"),
           ),
           SizedBox(
             height: 14.0,
@@ -178,9 +175,7 @@ class _MeetingState extends State<Meeting> {
                 "Join Meeting",
                 style: TextStyle(color: Colors.white),
               ),
-              style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateColor.resolveWith((states) => Colors.blue)),
+              style: ButtonStyle(backgroundColor: WidgetStateColor.resolveWith((states) => Colors.blue)),
             ),
           ),
           SizedBox(
@@ -210,8 +205,7 @@ class _MeetingState extends State<Meeting> {
   }
 
   _joinMeeting() async {
-    final String? serverUrl =
-        serverText.text.trim().isEmpty ? null : serverText.text;
+    final String? serverUrl = serverText.text.trim().isEmpty ? null : serverText.text;
 
     final featureFlags = {
       /*FeatureFlagEnum.ADD_PEOPLE_ENABLED: false,
@@ -310,19 +304,16 @@ class _MeetingState extends State<Meeting> {
             debugPrint("JitsiMeetingListener - onError: error: $error");
           },
           onConferenceWillJoin: (url) {
-            debugPrint(
-                "JitsiMeetingListener - onConferenceWillJoin: url: $url");
+            debugPrint("JitsiMeetingListener - onConferenceWillJoin: url: $url");
           },
           onConferenceJoined: (url) {
             debugPrint("JitsiMeetingListener - onConferenceJoined: url:$url");
           },
           onConferenceTerminated: (url, error) {
-            debugPrint(
-                "JitsiMeetingListener - onConferenceTerminated: url: $url, error: $error");
+            debugPrint("JitsiMeetingListener - onConferenceTerminated: url: $url, error: $error");
           },
           onParticipantLeft: (participantId) {
-            debugPrint(
-                "JitsiMeetingListener - onParticipantLeft: $participantId");
+            debugPrint("JitsiMeetingListener - onParticipantLeft: $participantId");
           },
           onParticipantJoined: (email, name, role, participantId) {
             debugPrint("JitsiMeetingListener - onParticipantJoined: "
@@ -330,12 +321,10 @@ class _MeetingState extends State<Meeting> {
                 "participantId: $participantId");
           },
           onAudioMutedChanged: (muted) {
-            debugPrint(
-                "JitsiMeetingListener - onAudioMutedChanged: muted: $muted");
+            debugPrint("JitsiMeetingListener - onAudioMutedChanged: muted: $muted");
           },
           onVideoMutedChanged: (muted) {
-            debugPrint(
-                "JitsiMeetingListener - onVideoMutedChanged: muted: $muted");
+            debugPrint("JitsiMeetingListener - onVideoMutedChanged: muted: $muted");
           },
           onScreenShareToggled: (participantId, isSharing) {
             debugPrint("JitsiMeetingListener - onScreenShareToggled: "

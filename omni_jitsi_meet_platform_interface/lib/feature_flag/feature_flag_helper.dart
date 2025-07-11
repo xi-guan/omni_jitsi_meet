@@ -21,8 +21,7 @@ class FeatureFlagHelper {
     FeatureFlagEnum.INVITE_ENABLED: 'invite.enabled',
     FeatureFlagEnum.IOS_RECORDING_ENABLED: 'ios.recording.enabled',
     FeatureFlagEnum.IOS_SCREENSHARING_ENABLED: 'ios.screensharing.enabled',
-    FeatureFlagEnum.ANDROID_SCREENSHARING_ENABLED:
-        'android.screensharing.enabled',
+    FeatureFlagEnum.ANDROID_SCREENSHARING_ENABLED: 'android.screensharing.enabled',
     FeatureFlagEnum.SPEAKERSTATS_ENABLED: 'speakerstats.enabled',
     FeatureFlagEnum.KICK_OUT_ENABLED: 'kick-out.enabled',
     FeatureFlagEnum.LIVE_STREAMING_ENABLED: 'live-streaming.enabled',
@@ -32,8 +31,7 @@ class FeatureFlagHelper {
     FeatureFlagEnum.NOTIFICATIONS_ENABLED: 'notifications.enabled',
     FeatureFlagEnum.OVERFLOW_MENU_ENABLED: 'overflow-menu.enabled',
     FeatureFlagEnum.PIP_ENABLED: 'pip.enabled',
-    FeatureFlagEnum.PIP_WHILE_SCREEN_SHARING_ENABLED:
-        'pip-while-screen-sharing.enabled',
+    FeatureFlagEnum.PIP_WHILE_SCREEN_SHARING_ENABLED: 'pip-while-screen-sharing.enabled',
     FeatureFlagEnum.PREJOIN_PAGE_ENABLED: 'prejoinpage.enabled',
     FeatureFlagEnum.PREJOIN_PAGE_HIDE_DISPLAY_NAME: 'prejoinpage.hideDisplayName',
     FeatureFlagEnum.RAISE_HAND_ENABLED: 'raise-hand.enabled',

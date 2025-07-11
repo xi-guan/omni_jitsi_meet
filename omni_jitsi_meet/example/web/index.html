@@ -17,29 +17,21 @@
 
   <title>jitsi_meet_example</title>
   <link rel="manifest" href="/manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+  <script src="js/external_api.js"></script>
 </head>
 <body>
   <script>
-      window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
-      }).then(function(engineInitializer) {
-        return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
-        return appRunner.runApp();
-      });
-    });
+   {{flutter_js}}
+   {{flutter_build_config}}
+  _flutter.loader.load({
+    onEntrypointLoaded: async function(engineInitializer) {
+      try {
+        const appRunner = await engineInitializer.initializeEngine();
+        await appRunner.runApp();
+      } catch (error) {
+      }
+    }
+  });
   </script>
-  <script src="https://meet.jit.si/external_api.js" type="application/javascript"></script>
 </body>
 </html>
